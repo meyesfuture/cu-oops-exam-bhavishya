@@ -1,0 +1,161 @@
+/**
+ * Design Tokens for Coding Practice Workspace
+ * Baseline Viewport Target: 1366 × 768 px
+ * Supports Light Theme (CodeChef reference) and Dark Theme (Pro IDE)
+ */
+
+:root {
+  /* Color Palette - Light Theme */
+  --bg-app: #ffffff;
+  --bg-chrome: #f8fafc;
+  --bg-dock: #f1f5f9;
+  --bg-editor: #ffffff;
+  --bg-tab-active: #ffffff;
+  --bg-tab-inactive: #f1f5f9;
+  --bg-code-box: #1e1e1e;
+  --bg-code-box-inline: #f1f5f9;
+  --bg-timer: #e0f2fe;
+  --bg-pill: #e2e8f0;
+  --bg-hover: #f1f5f9;
+  --bg-active: #e2e8f0;
+  --bg-drawer: #ffffff;
+
+  /* Borders & Dividers */
+  --border-subtle: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --border-focus: #4079da;
+  --border-active-tab: #4079da;
+  --border-code-box: #334155;
+  --border-sample-io: #d5e8f8;
+  --border-constraints: #c8dff4;
+
+  /* Typography Colors */
+  --text-primary: #333333;
+  --text-secondary: #555555;
+  --text-muted: #94a3b8;
+  --text-inverse: #ffffff;
+  --text-code-box: #e2e8f0;
+  --text-timer: #0369a1;
+
+  /* Brand Accents — CodeChef blue (#4079da primary, #2a67b1 dark) */
+  --brand-primary: #4079da;
+  --brand-primary-hover: #2a67b1;
+  --brand-primary-active: #1a4f8a;
+  --brand-secondary: #ffffff;
+  --brand-secondary-border: #2a67b1;
+  --brand-secondary-hover: #f0f7ff;
+  --codechef-blue: #4079da;
+  --codechef-blue-dark: #2a67b1;
+
+  /* Status Colors */
+  --status-not-attempted: #94a3b8;
+  --status-in-progress: #f59e0b;
+  --status-submitted: #10b981;
+  --status-wifi-active: #22c55e;
+  --status-error: #ef4444;
+  --status-warning-bg: #fffbeb;
+  --status-warning-text: #b45309;
+  --status-danger-bg: #ffe4e6;
+  --status-danger-text: #be123c;
+
+  /* Typography (Self-hosted / Native OS System Stacks for zero external CDN calls) */
+  --font-sans: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'Consolas', 'Cascadia Code', 'Courier New', monospace;
+
+  /* Font Sizes */
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+
+  /* Spacing Scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* Dimensions (1366x768 reference) */
+  --header-height: 50px;
+  --rail-width: 48px;
+  --tab-bar-height: 44px;
+  --breadcrumb-height: 28px;
+  --splitter-width: 5px;
+  --console-height-default: 200px;
+
+  /* CodeChef component tokens */
+  --constraints-bg: #f0f7ff;
+  --codechef-run-btn-colour: #2a67b1;
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+
+  /* Transitions & Animation */
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+}
+
+/* Dark Theme Tokens */
+[data-theme='dark'],
+.dark {
+  --bg-app: #0d1117;
+  --bg-chrome: #161b22;
+  --bg-dock: #090d16;
+  --bg-editor: #0d1117;
+  --bg-tab-active: #0d1117;
+  --bg-tab-inactive: #161b22;
+  --bg-code-box: #161b22;
+  --bg-code-box-inline: #21262d;
+  --bg-timer: #1e3a5f;
+  --bg-pill: #21262d;
+  --bg-hover: #21262d;
+  --bg-active: #30363d;
+  --bg-drawer: #161b22;
+
+  --border-subtle: #30363d;
+  --border-strong: #484f58;
+  --border-focus: #388bfd;
+  --border-active-tab: #388bfd;
+  --border-code-box: #30363d;
+
+  --text-primary: #f0f6fc;
+  --text-secondary: #8b949e;
+  --text-muted: #6e7681;
+  --text-inverse: #0d1117;
+  --text-code-box: #e6edf3;
+  --text-timer: #70b8ff;
+
+  --brand-primary: #388bfd;
+  --brand-primary-hover: #1f6feb;
+  --brand-primary-active: #1158c7;
+  --brand-secondary: #21262d;
+  --brand-secondary-border: #30363d;
+  --brand-secondary-hover: #30363d;
+
+  --status-not-attempted: #6e7681;
+  --status-in-progress: #d29922;
+  --status-submitted: #2ea043;
+  --status-wifi-active: #3fb950;
+  --status-error: #f85149;
+  --status-warning-bg: #3d2c00;
+  --status-warning-text: #f0883e;
+  --status-danger-bg: #490202;
+  --status-danger-text: #ff7b72;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
