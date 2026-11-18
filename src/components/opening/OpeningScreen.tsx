@@ -5,14 +5,9 @@ import {
   User,
   Wifi,
   LogOut,
-  ChevronLeft,
-  RotateCw,
-  Menu,
-  Globe,
-  Battery,
-  Volume2,
 } from 'lucide-react';
 import { ExamSession } from '../../types';
+import { SEBWindowChrome } from '../layout/SEBWindowChrome';
 
 interface OpeningScreenProps {
   session: ExamSession;
@@ -43,8 +38,8 @@ const ExamIllustration: React.FC = () => (
 );
 
 export const OpeningScreen: React.FC<OpeningScreenProps> = ({ session, onStartExam }) => {
-  // Live ticking countdown for the pre-exam waiting screen
-  const [minutes, setMinutes] = useState(40);
+  // Live ticking countdown for the pre-exam waiting screen: starts at 02 Hrs : 33 Min (Image 2)
+  const [minutes, setMinutes] = useState(33);
   const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
@@ -60,67 +55,27 @@ export const OpeningScreen: React.FC<OpeningScreenProps> = ({ session, onStartEx
     return () => clearInterval(timer);
   }, []);
 
-  return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100dvh',
-        width: '100vw',
-        backgroundColor: '#ebeef2',
-        color: '#1f2937',
-        fontFamily: "'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-        overflow: 'hidden',
-        userSelect: 'none',
-      }}
-    >
-      {/* SEB Kiosk Top Frame Bar (Exact Reference media_1794961604802_86d5096f.jpg) */}
-      <div
-        style={{
-          height: '30px',
-          backgroundColor: '#e2e8f0',
-          borderBottom: '1px solid #cbd5e1',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '0 10px',
-          flexShrink: 0,
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#475569' }}>
-          <button
-            type="button"
-            title="Back"
-            style={{ background: 'transparent', border: 'none', cursor: 'default', padding: '2px', color: '#475569', display: 'flex' }}
-          >
-            <ChevronLeft size={16} />
-          </button>
-          <button
-            type="button"
-            title="Reload"
-            style={{ background: 'transparent', border: 'none', cursor: 'default', padding: '2px', color: '#475569', display: 'flex' }}
-          >
-            <RotateCw size={13} />
-          </button>
-        </div>
-        <div style={{ color: '#475569', display: 'flex', alignItems: 'center' }}>
-          <Menu size={16} />
-        </div>
-      </div>
+  const examTitle = 'CU CSE OOPS end semester practical exam Slot 3 (01:30 PM-03:00 PM)';
 
-      {/* Main Viewport Content Area */}
+  return (
+    <SEBWindowChrome
+      title={examTitle}
+      timeString="10:56"
+      dateString="18-11-2026"
+    >
+      {/* Centered Main Viewport Content Area */}
       <div
         style={{
           flex: 1,
-          overflowY: 'auto',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '16px 20px',
+          padding: '20px',
+          overflowY: 'auto',
         }}
       >
-        {/* Top-Right Action Buttons Container */}
+        {/* Top-Right Action Buttons (Logout & Quit Safe Exam Browser) */}
         <div
           style={{
             width: '100%',
@@ -155,8 +110,8 @@ export const OpeningScreen: React.FC<OpeningScreenProps> = ({ session, onStartEx
           </button>
 
           {/* Quit Safe Exam Browser Button (Red Outline) */}
-          <button
-            type="button"
+          <a
+            href="https://safeexmbrowser.org/exit"
             title="Quit Safe Exam Browser"
             style={{
               display: 'inline-flex',
@@ -170,14 +125,15 @@ export const OpeningScreen: React.FC<OpeningScreenProps> = ({ session, onStartEx
               fontSize: '12px',
               fontWeight: 400,
               cursor: 'pointer',
+              textDecoration: 'none',
             }}
           >
             <LogOut size={12} color="#dc2626" />
             <span>Quit Safe Exam Browser</span>
-          </button>
+          </a>
         </div>
 
-        {/* Centered Assessment Card (Exact Reference media_1794961604802_86d5096f.jpg) */}
+        {/* Centered Assessment Card (Exact Reference Image 2: media_1794980396003_2331b03e.jpg) */}
         <div
           style={{
             width: '100%',
@@ -191,7 +147,7 @@ export const OpeningScreen: React.FC<OpeningScreenProps> = ({ session, onStartEx
             flexDirection: 'column',
           }}
         >
-          {/* Card Header: Exam Title & Checklist Illustration */}
+          {/* Card Header: Slot 3 Title & Checklist Illustration */}
           <div
             style={{
               padding: '18px 24px 14px 24px',
@@ -210,7 +166,7 @@ export const OpeningScreen: React.FC<OpeningScreenProps> = ({ session, onStartEx
                 lineHeight: 1.4,
               }}
             >
-              CU CSE OOPS end semester practical exam Slot 1(9:30 AM - 11:00 AM)
+              {examTitle}
             </h1>
 
             <ExamIllustration />
@@ -274,7 +230,7 @@ export const OpeningScreen: React.FC<OpeningScreenProps> = ({ session, onStartEx
                 </div>
               </div>
 
-              {/* Row 3: Candidate Identity (SUBHAM PANIGRAHI) */}
+              {/* Row 3: Candidate Identity (NAVNEET) */}
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
                 <User size={16} color="#0284c7" style={{ marginTop: '2px', flexShrink: 0 }} />
                 <div>
@@ -287,10 +243,10 @@ export const OpeningScreen: React.FC<OpeningScreenProps> = ({ session, onStartEx
                       letterSpacing: '0.02em',
                     }}
                   >
-                    {session?.candidateName || 'BHAVISHYA PAL'}
+                    {session?.candidateName || 'NAVNEET'}
                   </div>
                   <div style={{ fontSize: '11.5px', color: '#64748b', marginTop: '2px' }}>
-                    CodeChef Username: {session?.username ? session.username.split(' ')[0] : 'cuchd_cc_275'}{' '}
+                    CodeChef Username: {session?.username ? session.username.split(' ')[0] : 'cuchd_cc_253'}{' '}
                     <span style={{ color: '#0284c7', cursor: 'pointer' }}>(Not you? Logout)</span>
                   </div>
                   <div style={{ fontSize: '11.5px', color: '#64748b', marginTop: '2px' }}>
@@ -370,7 +326,7 @@ export const OpeningScreen: React.FC<OpeningScreenProps> = ({ session, onStartEx
                   fontSize: '13px',
                 }}
               >
-                07
+                02
               </span>
               <span>Hrs :</span>
               <span
@@ -392,53 +348,6 @@ export const OpeningScreen: React.FC<OpeningScreenProps> = ({ session, onStartEx
           </div>
         </div>
       </div>
-
-      {/* SEB Kiosk Bottom Taskbar (Exact Reference media_1794961604802_86d5096f.jpg) */}
-      <div
-        style={{
-          height: '30px',
-          backgroundColor: '#e2e8f0',
-          borderTop: '1px solid #cbd5e1',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '0 10px',
-          fontSize: '11px',
-          color: '#334155',
-          flexShrink: 0,
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '4px',
-              backgroundColor: '#ffffff',
-              border: '1px solid #cbd5e1',
-              borderRadius: '2px',
-              padding: '2px 6px',
-              fontSize: '11px',
-              color: '#334155',
-            }}
-          >
-            <span>Open Webpages</span>
-            <Globe size={12} color="#2563eb" />
-          </div>
-        </div>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <Battery size={14} color="#334155" />
-          <Volume2 size={14} color="#334155" />
-          <Wifi size={14} color="#16a34a" />
-          <span style={{ fontWeight: 600 }}>ENG</span>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', lineHeight: 1 }}>
-            <span style={{ fontSize: '10px', fontWeight: 600 }}>01:49</span>
-            <span style={{ fontSize: '9px', color: '#64748b' }}>18-11-2026</span>
-          </div>
-        </div>
-      </div>
-    </div>
+    </SEBWindowChrome>
   );
 };
-

@@ -1,18 +1,18 @@
 import { ReferenceTaskSpec, VivaStatementSpec, VirtualFile, TestCase, ExamSession } from '../types';
 
 export const REFERENCE_EXAM_SESSION: ExamSession = {
-  candidateName: 'BHAVISHYA PAL',
-  candidateId: '25BCS12751',
-  username: 'cuchd_cc_275 | TIWUKE',
+  candidateName: 'NAVNEET',
+  candidateId: '25BCS11102',
+  username: 'cuchd_cc_253 | TIWUKE',
   ipAddress: '47.247.118.30 (Allowed for this test)',
   status: 'not_attempted',
   currentSection: 'coding',
   totalDurationSeconds: 5400, // 1 hr 30 mins (90 mins)
-  remainingSeconds: 3463,     // 57 Min : 43 Sec (matching reference Image 2)
+  remainingSeconds: 5400,     // 1 Hour 30 Minutes
   isTimerRunning: true,
   wifiStatus: 'connected',
   currentQuestionIndex: 1,
-  totalQuestions: 1,
+  totalQuestions: 2,
 };
 
 /**

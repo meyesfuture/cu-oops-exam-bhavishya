@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Star, LogOut } from 'lucide-react';
+import { SEBWindowChrome } from '../layout/SEBWindowChrome';
 
 interface CompletionScreenProps {
   onReturnToReview?: () => void;
@@ -8,8 +9,8 @@ interface CompletionScreenProps {
 const CharacterIllustration: React.FC = () => (
   <div
     style={{
-      width: '92px',
-      height: '92px',
+      width: '84px',
+      height: '84px',
       backgroundColor: '#f1f5f9',
       borderRadius: '8px',
       display: 'flex',
@@ -19,7 +20,7 @@ const CharacterIllustration: React.FC = () => (
       overflow: 'hidden',
     }}
   >
-    <svg width="84" height="84" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="78" height="78" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       {/* Gold star */}
       <polygon
         points="24,38 27,45 34,45 28,49 31,56 24,51 17,56 20,49 14,45 21,45"
@@ -53,20 +54,13 @@ export const CompletionScreen: React.FC<CompletionScreenProps> = () => {
   const [saved, setSaved] = useState<boolean>(false);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100dvh',
-        width: '100vw',
-        backgroundColor: '#f8fafc',
-        fontFamily: "'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-        userSelect: 'none',
-        overflow: 'hidden',
-      }}
+    <SEBWindowChrome
+      title="CU CSE OOPS end semester practical exam Slot 1(9:30 AM - 11:00 AM)"
+      timeString="10:35"
+      dateString="18-11-2026"
     >
-      {/* Main Content Area */}
-      <main
+      {/* Main Centered Content Viewport */}
+      <div
         style={{
           flex: 1,
           display: 'flex',
@@ -77,15 +71,16 @@ export const CompletionScreen: React.FC<CompletionScreenProps> = () => {
           overflowY: 'auto',
         }}
       >
-        {/* Center Card */}
+        {/* Center Card (Exact Reference Image 1: media_1794980387623_9470818b.png) */}
         <div
           style={{
             width: '100%',
             maxWidth: '680px',
             backgroundColor: '#ffffff',
-            borderTop: '1px solid #e5e7eb',
-            borderBottom: '1px solid #e5e7eb',
-            padding: '54px 32px 50px 32px',
+            borderRadius: '4px',
+            border: '1px solid #e2e8f0',
+            boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)',
+            padding: '42px 32px 38px 32px',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -95,10 +90,10 @@ export const CompletionScreen: React.FC<CompletionScreenProps> = () => {
           {/* Main Heading */}
           <h1
             style={{
-              fontSize: '28px',
+              fontSize: '24px',
               fontWeight: 700,
-              color: '#2b3d52',
-              margin: '0 0 16px 0',
+              color: '#1e293b',
+              margin: '0 0 12px 0',
               letterSpacing: '-0.01em',
             }}
           >
@@ -108,8 +103,8 @@ export const CompletionScreen: React.FC<CompletionScreenProps> = () => {
           {/* Subtitle Lines */}
           <p
             style={{
-              fontSize: '15px',
-              color: '#556270',
+              fontSize: '14.5px',
+              color: '#475569',
               lineHeight: 1.5,
               margin: '0 0 4px 0',
               maxWidth: '380px',
@@ -120,13 +115,46 @@ export const CompletionScreen: React.FC<CompletionScreenProps> = () => {
 
           <p
             style={{
-              fontSize: '14.5px',
-              color: '#556270',
-              margin: '0 0 42px 0',
+              fontSize: '14px',
+              color: '#475569',
+              margin: '0 0 20px 0',
             }}
           >
             Your score will be shared with your college.
           </p>
+
+          {/* Red Quit Safe Exam Browser Button (Exact Position: Above Rating in Image 1) */}
+          <a
+            href="https://safeexmbrowser.org/exit"
+            title="Quit Safe Exam Browser"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px',
+              backgroundColor: '#b91c1c',
+              color: '#ffffff',
+              border: '1px solid #991b1b',
+              borderRadius: '3px',
+              padding: '7px 18px',
+              fontSize: '13px',
+              fontWeight: 500,
+              textDecoration: 'none',
+              cursor: 'pointer',
+              marginBottom: '26px',
+              boxShadow: '0 1px 2px rgba(185, 28, 28, 0.2)',
+              transition: 'background-color 150ms ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#991b1b';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#b91c1c';
+            }}
+          >
+            <LogOut size={13} color="#ffffff" />
+            <span>Quit Safe Exam Browser</span>
+          </a>
 
           {/* Feedback & Star Rating Widget with Illustration */}
           <div
@@ -134,7 +162,7 @@ export const CompletionScreen: React.FC<CompletionScreenProps> = () => {
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '24px',
+              gap: '20px',
               textAlign: 'center',
             }}
           >
@@ -148,8 +176,8 @@ export const CompletionScreen: React.FC<CompletionScreenProps> = () => {
             >
               <div
                 style={{
-                  fontSize: '13.5px',
-                  color: '#556270',
+                  fontSize: '13px',
+                  color: '#475569',
                   marginBottom: '8px',
                 }}
               >
@@ -160,7 +188,7 @@ export const CompletionScreen: React.FC<CompletionScreenProps> = () => {
               <div
                 style={{
                   display: 'flex',
-                  gap: '8px',
+                  gap: '6px',
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
@@ -184,7 +212,7 @@ export const CompletionScreen: React.FC<CompletionScreenProps> = () => {
                     }}
                   >
                     <Star
-                      size={25}
+                      size={24}
                       strokeWidth={1.5}
                       color={star <= (hoverRating || rating) ? '#f59e0b' : '#94a3b8'}
                       fill={star <= (hoverRating || rating) ? '#f59e0b' : 'none'}
@@ -198,13 +226,13 @@ export const CompletionScreen: React.FC<CompletionScreenProps> = () => {
                 type="button"
                 onClick={() => setSaved(true)}
                 style={{
-                  marginTop: '14px',
+                  marginTop: '12px',
                   backgroundColor: '#6ba4d9',
                   color: '#ffffff',
                   border: 'none',
                   borderRadius: '3px',
-                  padding: '7px 18px',
-                  fontSize: '13px',
+                  padding: '6px 16px',
+                  fontSize: '12.5px',
                   fontWeight: 500,
                   cursor: 'pointer',
                   transition: 'background-color 150ms ease',
@@ -219,42 +247,8 @@ export const CompletionScreen: React.FC<CompletionScreenProps> = () => {
             {/* Right side: Character holding gold star illustration */}
             <CharacterIllustration />
           </div>
-
-          {/* Red Quit Exam Browser Action Button */}
-          <a
-            href="https://safeexmbrowser.org/exit"
-            title="Quit Safe Exam Browser"
-            style={{
-              marginTop: '36px',
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '8px',
-              backgroundColor: '#dc2626',
-              color: '#ffffff',
-              border: '1px solid #b91c1c',
-              borderRadius: '4px',
-              padding: '9px 22px',
-              fontSize: '13.5px',
-              fontWeight: 600,
-              textDecoration: 'none',
-              cursor: 'pointer',
-              boxShadow: '0 1px 2px rgba(220, 38, 38, 0.2)',
-              transition: 'background-color 150ms ease, transform 150ms ease',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#b91c1c';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#dc2626';
-            }}
-          >
-            <LogOut size={16} color="#ffffff" />
-            <span>Quit Exam Browser</span>
-          </a>
         </div>
-      </main>
-    </div>
+      </div>
+    </SEBWindowChrome>
   );
 };
-
