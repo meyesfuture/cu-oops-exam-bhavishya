@@ -17,11 +17,13 @@ import {
 export interface UseEditorStateManagerOptions {
   initialLanguage?: SupportedLanguage;
   initialJavaFiles: VirtualFile[];
+  initialActiveFilePath?: string;
 }
 
 export function useEditorStateManager({
   initialLanguage = 'java',
   initialJavaFiles,
+  initialActiveFilePath,
 }: UseEditorStateManagerOptions) {
   // Restore selected language from localStorage or initial fallback
   const resolvedInitialLang = useMemo(() => {
@@ -51,12 +53,12 @@ export function useEditorStateManager({
     }
 
     const loaded = loadEditorDrafts(defaultSeed);
-    // Ensure Java has strictly the single required file Main.java at ProductInventoryManager/src/main/java/Main.java
-    const isSingleMainJava =
-      loaded.java?.files?.length === 1 &&
-      loaded.java?.files[0]?.name === 'Main.java' &&
-      loaded.java?.files[0]?.path === 'ProductInventoryManager/src/main/java/Main.java';
-    if (!loaded.java || loaded.java.files.length === 0 || !isSingleMainJava) {
+    // Ensure Java has the expected default files (Main.java and MethodOverloading.java)
+    const hasExpectedJavaFiles =
+      loaded.java?.files?.length === initialJavaFiles.length &&
+      loaded.java.files.some((f) => f.name === 'Main.java') &&
+      loaded.java.files.some((f) => f.name === 'MethodOverloading.java');
+    if (!loaded.java || loaded.java.files.length === 0 || !hasExpectedJavaFiles) {
       loaded.java = defaultSeed.java;
     }
     return loaded;
@@ -71,11 +73,23 @@ export function useEditorStateManager({
   });
 
   const [activeFilePath, setActiveFilePath] = useState<string>(() => {
-    return initialJavaFiles[0]?.path ?? files[0]?.path ?? '';
+    if (initialActiveFilePath) return initialActiveFilePath;
+    const currentDraft = draftsRef.current[resolvedInitialLang];
+    return currentDraft?.activeFilePath || (initialJavaFiles[0]?.path ?? files[0]?.path ?? '');
   });
 
   const [openTabPaths, setOpenTabPaths] = useState<string[]>(() => {
-    return [initialJavaFiles[0]?.path ?? files[0]?.path ?? ''];
+    const currentDraft = draftsRef.current[resolvedInitialLang];
+    if (currentDraft?.openTabPaths && currentDraft.openTabPaths.length > 0) {
+      const paths = [...currentDraft.openTabPaths];
+      for (const f of initialJavaFiles) {
+        if (!paths.includes(f.path)) {
+          paths.push(f.path);
+        }
+      }
+      return paths;
+    }
+    return initialJavaFiles.map((f) => f.path);
   });
 
   // Automatically save drafts and current language to localStorage whenever files or tabs change

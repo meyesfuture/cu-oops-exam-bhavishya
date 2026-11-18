@@ -399,6 +399,173 @@ export const ProblemPane: React.FC<ProblemPaneProps> = ({
               minWidth: 0,
             }}
           >
+          {task.questionNumber === 2 ? (
+            <>
+              {/* Task Heading */}
+              <h1
+                style={{
+                  fontSize: '20px',
+                  fontWeight: 700,
+                  color: '#111827',
+                  margin: '0 0 16px 0',
+                }}
+              >
+                Method Overloading in Java
+              </h1>
+
+              {/* Intro Description */}
+              <p style={{ margin: '0 0 16px 0' }}>
+                Complete the Java program demonstrating <strong>Method Overloading (Compile-Time Polymorphism)</strong>.
+              </p>
+
+              <h2 style={{ fontSize: '16px', fontWeight: 700, color: '#111827', margin: '22px 0 10px 0' }}>
+                Task
+              </h2>
+              <p style={{ margin: '0 0 12px 0' }}>
+                Your implementation must:
+              </p>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <div>
+                  <div style={{ fontWeight: 600, color: '#111827', marginBottom: '6px' }}>
+                    1. Create an overloaded <code style={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '3px', padding: '1px 5px', fontFamily: 'Consolas, Courier New, monospace', fontSize: '12px', color: '#374151' }}>calculateArea()</code> method in Geometry for different geometric shapes:
+                  </div>
+                  <ul style={{ listStyle: 'none', paddingLeft: '8px', margin: '4px 0 0 0', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                    <li style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+                      <span style={{ color: '#6b7280' }}>•</span>
+                      <span><code style={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '3px', padding: '1px 5px', fontFamily: 'Consolas, Courier New, monospace', fontSize: '12px', color: '#374151' }}>calculateArea(double radius)</code> — returns Circle area (<code style={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '3px', padding: '1px 5px', fontFamily: 'Consolas, Courier New, monospace', fontSize: '12px', color: '#374151' }}>Math.PI * radius * radius</code>)</span>
+                    </li>
+                    <li style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+                      <span style={{ color: '#6b7280' }}>•</span>
+                      <span><code style={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '3px', padding: '1px 5px', fontFamily: 'Consolas, Courier New, monospace', fontSize: '12px', color: '#374151' }}>calculateArea(double length, double width)</code> — returns Rectangle area (<code style={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '3px', padding: '1px 5px', fontFamily: 'Consolas, Courier New, monospace', fontSize: '12px', color: '#374151' }}>length * width</code>)</span>
+                    </li>
+                    <li style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+                      <span style={{ color: '#6b7280' }}>•</span>
+                      <span><code style={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '3px', padding: '1px 5px', fontFamily: 'Consolas, Courier New, monospace', fontSize: '12px', color: '#374151' }}>calculateArea(double base, double height, boolean isTriangle)</code> — returns Triangle area (<code style={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '3px', padding: '1px 5px', fontFamily: 'Consolas, Courier New, monospace', fontSize: '12px', color: '#374151' }}>0.5 * base * height</code>)</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <div style={{ fontWeight: 600, color: '#111827', marginBottom: '6px' }}>
+                    2. Create an overloaded <code style={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '3px', padding: '1px 5px', fontFamily: 'Consolas, Courier New, monospace', fontSize: '12px', color: '#374151' }}>displayResult()</code> method to format and print the calculated area:
+                  </div>
+                  <ul style={{ listStyle: 'none', paddingLeft: '8px', margin: '4px 0 0 0', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                    <li style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+                      <span style={{ color: '#6b7280' }}>•</span>
+                      <span><code style={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '3px', padding: '1px 5px', fontFamily: 'Consolas, Courier New, monospace', fontSize: '12px', color: '#374151' }}>displayResult(String shape, double area)</code> — prints <code style={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '3px', padding: '1px 5px', fontFamily: 'Consolas, Courier New, monospace', fontSize: '12px', color: '#374151' }}>"&lt;shape&gt; Area: &lt;area with 2 decimal places&gt;"</code></span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  3. If non-positive dimensions are passed, return <code style={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '3px', padding: '1px 5px', fontFamily: 'Consolas, Courier New, monospace', fontSize: '12px', color: '#374151' }}>-1.0</code> and print:
+                  <div style={{ backgroundColor: '#1e222d', color: '#f8fafc', padding: '12px 16px', fontFamily: "Consolas, 'Courier New', monospace", fontSize: '12.5px', borderRadius: '4px', margin: '8px 0 14px 0' }}>
+                    INVALID_DIMENSIONS
+                  </div>
+                </div>
+
+                <div>
+                  4. Read inputs using <code style={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '3px', padding: '1px 5px', fontFamily: 'Consolas, Courier New, monospace', fontSize: '12px', color: '#374151' }}>Scanner</code> in the <code style={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '3px', padding: '1px 5px', fontFamily: 'Consolas, Courier New, monospace', fontSize: '12px', color: '#374151' }}>main</code> method and invoke the corresponding overloaded methods.
+                </div>
+              </div>
+
+              <hr style={{ border: 0, borderTop: '1px solid #e5e7eb', margin: '22px 0' }} />
+
+              <h2 style={{ fontSize: '16px', fontWeight: 700, color: '#111827', margin: '22px 0 10px 0' }}>
+                Input Format
+              </h2>
+              <ul style={{ listStyle: 'none', paddingLeft: '4px', margin: '0 0 16px 0', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <li style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+                  <span style={{ color: '#6b7280' }}>•</span>
+                  <span>The first line contains an integer <code style={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '3px', padding: '1px 5px', fontFamily: 'Consolas, Courier New, monospace', fontSize: '12px', color: '#374151' }}>T</code>, the number of test queries.</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+                  <span style={{ color: '#6b7280' }}>•</span>
+                  <span>Each of the next <code style={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '3px', padding: '1px 5px', fontFamily: 'Consolas, Courier New, monospace', fontSize: '12px', color: '#374151' }}>T</code> lines starts with a shape identifier (<code style={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '3px', padding: '1px 5px', fontFamily: 'Consolas, Courier New, monospace', fontSize: '12px', color: '#374151' }}>"CIRCLE"</code>, <code style={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '3px', padding: '1px 5px', fontFamily: 'Consolas, Courier New, monospace', fontSize: '12px', color: '#374151' }}>"RECTANGLE"</code>, <code style={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '3px', padding: '1px 5px', fontFamily: 'Consolas, Courier New, monospace', fontSize: '12px', color: '#374151' }}>"TRIANGLE"</code>) followed by dimension values.</span>
+                </li>
+              </ul>
+
+              <h2 style={{ fontSize: '16px', fontWeight: 700, color: '#111827', margin: '22px 0 10px 0' }}>
+                Output Format
+              </h2>
+              <p style={{ margin: '0 0 10px 0' }}>
+                For each query, print the shape name and its calculated area rounded to 2 decimal places.
+              </p>
+              <p style={{ margin: '0 0 6px 0' }}>
+                Print format:
+              </p>
+              <div style={{ backgroundColor: '#1e222d', color: '#f8fafc', padding: '12px 16px', fontFamily: "Consolas, 'Courier New', monospace", fontSize: '12.5px', borderRadius: '4px', margin: '8px 0 14px 0' }}>
+                Shape Area: &lt;value&gt;
+              </div>
+              <p style={{ margin: '0 0 16px 0' }}>
+                Print area with exactly two digits after the decimal point.
+              </p>
+
+              <hr style={{ border: 0, borderTop: '1px solid #e5e7eb', margin: '22px 0' }} />
+
+              <h2 style={{ fontSize: '16px', fontWeight: 700, color: '#111827', margin: '22px 0 10px 0' }}>
+                Constraints
+              </h2>
+              <ul style={{ listStyle: 'none', paddingLeft: '4px', margin: '0 0 16px 0', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <li style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+                  <span style={{ color: '#6b7280' }}>•</span>
+                  <span>1 ≤ T ≤ 50</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+                  <span style={{ color: '#6b7280' }}>•</span>
+                  <span>0.0 &lt; radius, length, width, base, height ≤ 10000.0</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+                  <span style={{ color: '#6b7280' }}>•</span>
+                  <span>Dimensions are non-zero positive numbers.</span>
+                </li>
+              </ul>
+
+              <hr style={{ border: 0, borderTop: '1px solid #e5e7eb', margin: '22px 0' }} />
+
+              <h2 style={{ fontSize: '16px', fontWeight: 700, color: '#111827', margin: '22px 0 10px 0' }}>
+                Sample Input
+              </h2>
+              <div
+                style={{
+                  backgroundColor: '#1e222d',
+                  color: '#f8fafc',
+                  padding: '12px 16px',
+                  fontFamily: "Consolas, 'Courier New', monospace",
+                  fontSize: '12.5px',
+                  borderRadius: '4px',
+                  margin: '8px 0 16px 0',
+                  lineHeight: 1.6,
+                  overflowX: 'auto',
+                  whiteSpace: 'pre',
+                }}
+              >
+{task.sampleInput}
+              </div>
+
+              <h2 style={{ fontSize: '16px', fontWeight: 700, color: '#111827', margin: '22px 0 10px 0' }}>
+                Sample Output
+              </h2>
+              <div
+                style={{
+                  backgroundColor: '#1e222d',
+                  color: '#f8fafc',
+                  padding: '12px 16px',
+                  fontFamily: "Consolas, 'Courier New', monospace",
+                  fontSize: '12.5px',
+                  borderRadius: '4px',
+                  margin: '8px 0 16px 0',
+                  lineHeight: 1.6,
+                  overflowX: 'auto',
+                  whiteSpace: 'pre',
+                }}
+              >
+{task.sampleOutput}
+              </div>
+            </>
+          ) : (
+            <>
           {/* Task Heading */}
           <h1
             style={{
@@ -628,6 +795,8 @@ export const ProblemPane: React.FC<ProblemPaneProps> = ({
           >
             {task.sampleOutput}
           </div>
+            </>
+          )}
         </div>
       </div>
       )}

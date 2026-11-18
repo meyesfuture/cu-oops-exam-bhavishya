@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Header } from './components/layout/Header';
 import { ActivityRail } from './components/layout/ActivityRail';
 import { WorkspaceLayout } from './components/layout/WorkspaceLayout';
@@ -15,9 +15,11 @@ import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
 import {
   REFERENCE_EXAM_SESSION,
   REFERENCE_QUESTION_1,
+  REFERENCE_QUESTION_2,
   REFERENCE_VIVA_STATEMENT,
   REFERENCE_FILES,
   REFERENCE_TEST_CASES_Q1,
+  REFERENCE_TEST_CASES_Q2,
 } from './utils/sampleData';
 import { AppScreenState, ExamSection, TestCase, ConsoleLogEntry, SupportedLanguage, ExamStatus } from './types';
 
@@ -45,8 +47,14 @@ export function App() {
     return 'coding';
   });
 
-  const questionIndex = 1;
-  const activeTask = REFERENCE_QUESTION_1;
+  const [questionIndex, setQuestionIndex] = useState<number>(() => {
+    if (typeof window !== 'undefined') {
+      const qParam = new URLSearchParams(window.location.search).get('q');
+      if (qParam === '2') return 2;
+    }
+    return 1;
+  });
+  const activeTask = questionIndex === 2 ? REFERENCE_QUESTION_2 : REFERENCE_QUESTION_1;
 
   const { secondsRemaining } = useCountdown({ initialSeconds: REFERENCE_EXAM_SESSION.remainingSeconds });
 
@@ -68,6 +76,11 @@ export function App() {
     setToasts((prev) => prev.filter((t) => t.id !== id));
   }, []);
 
+  const initialActiveFile =
+    questionIndex === 2 && REFERENCE_FILES[1]
+      ? REFERENCE_FILES[1].path
+      : REFERENCE_FILES[0]?.path;
+
   // Full Editor State Manager with independent drafts per language (Java, C, C++, Python, JavaScript)
   const {
     currentLanguage,
@@ -84,9 +97,20 @@ export function App() {
   } = useEditorStateManager({
     initialLanguage: initialLang,
     initialJavaFiles: REFERENCE_FILES,
+    initialActiveFilePath: initialActiveFile,
   });
 
-  const [testCases, setTestCases] = useState<TestCase[]>(() => REFERENCE_TEST_CASES_Q1);
+  useEffect(() => {
+    if (questionIndex === 2 && REFERENCE_FILES[1]) {
+      selectFile(REFERENCE_FILES[1].path);
+    } else if (questionIndex === 1 && REFERENCE_FILES[0]) {
+      selectFile(REFERENCE_FILES[0].path);
+    }
+  }, [questionIndex, selectFile]);
+
+  const [testCases, setTestCases] = useState<TestCase[]>(() =>
+    questionIndex === 2 ? REFERENCE_TEST_CASES_Q2 : REFERENCE_TEST_CASES_Q1
+  );
   const [logs, setLogs] = useState<ConsoleLogEntry[]>([]);
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [isConsoleOpen, setIsConsoleOpen] = useState<boolean>(preferences.isConsoleOpen);
@@ -236,7 +260,17 @@ export function App() {
           currentSection={currentSection}
           currentQuestionIndex={questionIndex}
           onSectionChange={setCurrentSection}
-          onQuestionSelect={() => {}}
+          onQuestionSelect={(idx) => {
+            const validIdx = idx === 2 ? 2 : 1;
+            setQuestionIndex(validIdx);
+            if (validIdx === 1 && REFERENCE_FILES[0]) {
+              selectFile(REFERENCE_FILES[0].path);
+              setTestCases(REFERENCE_TEST_CASES_Q1);
+            } else if (REFERENCE_FILES[1]) {
+              selectFile(REFERENCE_FILES[1].path);
+              setTestCases(REFERENCE_TEST_CASES_Q2);
+            }
+          }}
           onRun={handleRunCode}
           onSubmit={handleFinalSubmitAssessment}
           isRunning={isRunning}
@@ -277,6 +311,13 @@ export function App() {
             ipAddress={REFERENCE_EXAM_SESSION.ipAddress}
             onSelectFile={(path) => {
               selectFile(path);
+              if (path.includes('MethodOverloading')) {
+                setQuestionIndex(2);
+                setTestCases(REFERENCE_TEST_CASES_Q2);
+              } else if (path.includes('Main')) {
+                setQuestionIndex(1);
+                setTestCases(REFERENCE_TEST_CASES_Q1);
+              }
               showToast(`Switched to ${path.split('/').pop()}`, 'info');
             }}
             onCreateFile={() => {
@@ -321,6 +362,13 @@ export function App() {
                   logs={logs}
                   onSelectTab={(path) => {
                     selectFile(path);
+                    if (path.includes('MethodOverloading')) {
+                      setQuestionIndex(2);
+                      setTestCases(REFERENCE_TEST_CASES_Q2);
+                    } else if (path.includes('Main')) {
+                      setQuestionIndex(1);
+                      setTestCases(REFERENCE_TEST_CASES_Q1);
+                    }
                   }}
                   onCloseTab={(path) => {
                     closeTab(path);

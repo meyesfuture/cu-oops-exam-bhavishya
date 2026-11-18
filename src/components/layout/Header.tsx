@@ -510,6 +510,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                   {[
                     { id: 1, title: 'Question 1: Product Inventory Manager', desc: 'SQLite in-memory JDBC operations' },
+                    { id: 2, title: 'Question 2: Method Overloading', desc: 'Compile-Time Polymorphism' },
                   ].map((q) => (
                     <button
                       key={q.id}

@@ -53,8 +53,56 @@ NOT_FOUND
 101 Laptop 55000.00 3`,
 };
 
+/**
+ * Question 2: Method Overloading (Compile-Time Polymorphism)
+ */
+export const REFERENCE_QUESTION_2: ReferenceTaskSpec = {
+  id: 'q2-method-overloading',
+  questionNumber: 2,
+  title: 'Method Overloading in Java',
+  subtitle:
+    'Complete the Java program demonstrating Method Overloading (Compile-Time Polymorphism).',
+  requirementsHeader: 'Your implementation must:',
+  requirements: [
+    '1. Create an overloaded calculateArea() method in Geometry for different geometric shapes:',
+    '   • calculateArea(double radius) — returns Circle area (Math.PI * radius * radius)',
+    '   • calculateArea(double length, double width) — returns Rectangle area (length * width)',
+    '   • calculateArea(double base, double height, boolean isTriangle) — returns Triangle area (0.5 * base * height)',
+    '2. Create an overloaded displayResult() method to format and print the calculated area:',
+    '   • displayResult(String shape, double area) — prints "<shape> Area: <area with 2 decimal places>"',
+    '3. If non-positive dimensions are passed, return -1.0 and print "INVALID_DIMENSIONS".',
+    '4. Read inputs using Scanner in the main method and invoke the corresponding overloaded methods.',
+  ],
+  inputFormatHeader: 'Input Format',
+  inputFormatBullets: [
+    'The first line contains an integer T, the number of test queries.',
+    'Each of the next T lines starts with a shape identifier ("CIRCLE", "RECTANGLE", "TRIANGLE") followed by dimension values.',
+  ],
+  outputFormatHeader: 'Output Format',
+  outputFormatText:
+    'For each query, print the shape name and its calculated area rounded to 2 decimal places.\n\nPrint format:',
+  outputFormatBox: 'Shape Area: <value>',
+  outputFormatNote: 'Print area with exactly two digits after the decimal point.',
+  constraints: [
+    '1 ≤ T ≤ 50',
+    '0.0 < radius, length, width, base, height ≤ 10000.0',
+    'Dimensions are non-zero positive numbers.',
+  ],
+  moreInfo: {
+    timeLimit: '1 secs',
+    memoryLimit: '1.5 GB',
+    sourceLimit: '50000 Bytes',
+  },
+  sampleInput: `3
+CIRCLE 7.0
+RECTANGLE 5.0 8.0
+TRIANGLE 6.0 4.0`,
+  sampleOutput: `Circle Area: 153.94
+Rectangle Area: 40.00
+Triangle Area: 12.00`,
+};
+
 // Aliases for any legacy references
-export const REFERENCE_QUESTION_2: ReferenceTaskSpec = REFERENCE_QUESTION_1;
 export const REFERENCE_QUESTION_TREE: ReferenceTaskSpec = REFERENCE_QUESTION_1;
 
 /**
@@ -248,6 +296,43 @@ public class Main {
 }
 `;
 
+export const STARTER_CODE_METHOD_OVERLOADING = `package com.practice;
+
+import java.util.Scanner;
+
+public class MethodOverloading {
+
+    // TODO: Overload calculateArea for Circle (radius)
+    public static double calculateArea(double radius) {
+        // Complete circle area logic
+        return 0.0;
+    }
+
+    // TODO: Overload calculateArea for Rectangle (length, width)
+    public static double calculateArea(double length, double width) {
+        // Complete rectangle area logic
+        return 0.0;
+    }
+
+    // TODO: Overload calculateArea for Triangle (base, height, isTriangle)
+    public static double calculateArea(double base, double height, boolean isTriangle) {
+        // Complete triangle area logic
+        return 0.0;
+    }
+
+    // TODO: Overload displayResult(String shape, double area)
+    public static void displayResult(String shape, double area) {
+        // Format to 2 decimal places
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // Invoke overloaded methods
+        scanner.close();
+    }
+}
+`;
+
 export const REFERENCE_FILES: VirtualFile[] = [
   {
     id: 'main-java',
@@ -257,6 +342,15 @@ export const REFERENCE_FILES: VirtualFile[] = [
     isModified: false,
     content: STARTER_CODE_MAIN_JAVA,
     initialContent: STARTER_CODE_MAIN_JAVA,
+  },
+  {
+    id: 'method-overloading-java',
+    path: 'PolymorphismLab/src/main/java/MethodOverloading.java',
+    name: 'MethodOverloading.java',
+    language: 'java',
+    isModified: false,
+    content: STARTER_CODE_METHOD_OVERLOADING,
+    initialContent: STARTER_CODE_METHOD_OVERLOADING,
   },
 ];
 
